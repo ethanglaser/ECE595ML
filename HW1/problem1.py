@@ -21,9 +21,9 @@ plt.hist(vals,1000)
 plt.savefig("prob1imgs/1bii1000")
 mean, std = norm.fit(vals)
 plt.figure()
-plt.hist(vals,bins=4,density=True)
+plt.hist(vals,bins=10,density=True)
 plt.plot(vals, norm.pdf(vals))
-plt.savefig("prob1imgs/1biv4")
+plt.savefig("quizprob1")
 plt.figure()
 plt.hist(vals,bins=1000,density=True)
 plt.plot(vals, norm.pdf(vals))
@@ -31,7 +31,7 @@ plt.savefig("prob1imgs/1biv1000")
 print(mean, std)
 
 #C.
-n = 1000
+n = 10000
 vals = sorted(np.random.normal(0,1,n))
 m = np.linspace(1,200,200)
 h = (max(vals) - min(vals)) / m

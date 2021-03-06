@@ -33,6 +33,8 @@ plt.savefig('prob3imgs/3c')
 #d
 idx = [10,16,23,37,45]
 y[idx] = 5
+idx = [5,6]
+y[idx] = 3
 theta2 = np.linalg.lstsq(X, y, rcond=None)[0]
 yhat2  = theta2[0]*eval_legendre(0,t) + theta2[1]*eval_legendre(1,t) + \
         theta2[2]*eval_legendre(2,t) + theta2[3]*eval_legendre(3,t) + \
