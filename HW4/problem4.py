@@ -5,8 +5,8 @@ from numpy.matlib import repmat
 
 
 def partA(h):
-    c0 = np.loadtxt("../Data/data/homework4_class0.txt")
-    c1 = np.loadtxt("../Data/data/homework4_class1.txt")
+    c0 = np.loadtxt("../Data/data/quiz4_class0.txt")
+    c1 = np.loadtxt("../Data/data/quiz4_class1.txt")
     x = np.vstack((c0, c1))
     row0, col0 = c0.shape
     row1, col1 = c1.shape
@@ -18,13 +18,13 @@ def partA(h):
     return kernel
 
 def partC(kernel):
-    c0 = np.loadtxt("../Data/data/homework4_class0.txt")
-    c1 = np.loadtxt("../Data/data/homework4_class1.txt")
+    c0 = np.loadtxt("../Data/data/quiz4_class0.txt")
+    c1 = np.loadtxt("../Data/data/quiz4_class1.txt")
     x = np.vstack((c0, c1))
     row0, col0 = c0.shape
     row1, col1 = c1.shape
     y = np.vstack((np.zeros(row0).reshape(-1, 1), np.ones(row1).reshape(-1, 1))).reshape(-1, 1)
-    lambd = 0.001
+    lambd = 0.01
     alpha = cvx.Variable((row0 + row1, 1))
     loss = - y.T @ kernel @ alpha + cvx.sum(cvx.log_sum_exp( cvx.hstack([np.zeros((row1 + row0,1)), kernel @ alpha]), axis=1 ))
     reg = cvx.quad_form(alpha, kernel)
@@ -35,8 +35,8 @@ def partC(kernel):
     return w
 
 def partD(alpha, h):
-    c0 = np.loadtxt("../Data/data/homework4_class0.txt")
-    c1 = np.loadtxt("../Data/data/homework4_class1.txt")
+    c0 = np.loadtxt("../Data/data/quiz4_class0.txt")
+    c1 = np.loadtxt("../Data/data/quiz4_class1.txt")
     row0, col0 = c0.shape
     row1, col1 = c1.shape
     x = np.column_stack((np.vstack((c0, c1)), np.ones(row0 + row1).reshape(-1, 1)))

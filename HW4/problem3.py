@@ -4,13 +4,13 @@ import cvxpy as cvx
 
 
 def partB():
-    c0 = np.loadtxt("../Data/data/homework4_class0.txt")
-    c1 = np.loadtxt("../Data/data/homework4_class1.txt")
+    c0 = np.loadtxt("../Data/data/quiz4_class0.txt")
+    c1 = np.loadtxt("../Data/data/quiz4_class1.txt")
     row0, col0 = c0.shape
     row1, col1 = c1.shape
     x = np.column_stack((np.vstack((c0, c1)), np.ones(row0 + row1).reshape(-1, 1)))
     y = np.vstack((np.zeros(row0).reshape(-1, 1), np.ones(row1).reshape(-1, 1)))
-    lambd = 0.0001
+    lambd = 0.01
     theta = cvx.Variable((3,1))
     loss = - cvx.sum(cvx.multiply(y, x @ theta)) + cvx.sum(cvx.log_sum_exp( cvx.hstack([np.zeros((row1 + row0,1)), x @ theta]), axis=1 ) )
     reg = cvx.sum_squares(theta)
@@ -21,8 +21,8 @@ def partB():
     return w
 
 def partC(theta):
-    c0 = np.loadtxt("../Data/data/homework4_class0.txt")
-    c1 = np.loadtxt("../Data/data/homework4_class1.txt")
+    c0 = np.loadtxt("../Data/data/quiz4_class0.txt")
+    c1 = np.loadtxt("../Data/data/quiz4_class1.txt")
     plt.figure()
     plt.scatter(c0[:, 0], c0[:, 1], c='b')
     plt.scatter(c1[:, 0], c1[:, 1], c='r')
@@ -31,8 +31,8 @@ def partC(theta):
     plt.savefig("3c")
 
 def partD():
-    c0 = np.loadtxt("../Data/data/homework4_class0.txt")
-    c1 = np.loadtxt("../Data/data/homework4_class1.txt")
+    c0 = np.loadtxt("../Data/data/quiz4_class0.txt")
+    c1 = np.loadtxt("../Data/data/quiz4_class1.txt")
     cov0 = np.cov(c0.T)
     cov1 = np.cov(c1.T)
     mu0 = np.mean(c0, axis=0)
